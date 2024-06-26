@@ -1,21 +1,24 @@
-function signUp(e){
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function(){
+    //EventListener al formulario de Registro 
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function(event){
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const pass = document.getElementById('password').value;
+            const user = {
+                email:email,
+                password: pass,
+            };
+            const json = JSON.stringify(user);
+            localStorage.setItem(email, json);
+            console.log('usuario ok');
+            alert('Usuario Registrado Correctamente');
+            window.location.href = 'login.html';
+        })
+    }
 
-    var email = document.getElementById('email').value;
-    var pass = document.getElementById('password').value;
-
-    var user = {
-        email:email,
-        password: pass,
-    };
-    var json = JSON.stringify(user);
-    localStorage.setItem(email,json);
-    console.log('usuario ok');
-}
-
-function loginFun(e){
-    event.preventDefault();
-}
+});
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -47,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Redireccionar a otra página (p. ej., la página principal)
             window.location.href = '../index.html';
-;           }else{
+            }else{
                 console.log('Contraseña incorrecta');
             }
 
