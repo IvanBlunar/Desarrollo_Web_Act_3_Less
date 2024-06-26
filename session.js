@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Limpiar sessionStorage y redireccionar al login
             sessionStorage.removeItem('userEmail');
-            window.location.href = '../login/login.html';
+            window.location.href = 'login/login.html'; 
+            //cambie  en la [linea 10] ..login/login.html la ruta relativa estaba mal 
         });
     });
 });

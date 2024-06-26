@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     const logoutButtons = document.querySelectorAll('.logout-btn');
 
@@ -11,5 +12,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
 

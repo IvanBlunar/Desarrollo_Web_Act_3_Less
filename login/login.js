@@ -1,3 +1,23 @@
+function signUp(e){
+    event.preventDefault();
+
+    var email = document.getElementById('email').value;
+    var pass = document.getElementById('password').value;
+
+    var user = {
+        email:email,
+        password: pass,
+    };
+    var json = JSON.stringify(user);
+    localStorage.setItem(email,json);
+    console.log('usuario ok');
+}
+
+function loginFun(e){
+    event.preventDefault();
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // Agregar event listener al formulario de inicio de sesión si existe
     const loginForm = document.getElementById('loginForm');
@@ -6,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
 
             const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const pass = document.getElementById('password').value;
 
             // Validación básica de correo electrónico
             if (!isValidEmail(email)) {
@@ -14,12 +34,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Simulación de inicio de sesión exitoso
-            // Guardar el correo en sessionStorage
-            sessionStorage.setItem('userEmail', email);
+            //Se añade para traer los datos del localStorage
+            const user = localStorage.getItem(email);
+            const data = JSON.parse(user);
+            console.log(data);
+
+            if (user == null) {
+                console.log('Email incorrecto');
+            } else if (email == data.email && pass == data.password) {
+                console.log('Inicio OK')
+                sessionStorage.setItem('userEmail', email);
 
             // Redireccionar a otra página (p. ej., la página principal)
             window.location.href = '../index.html';
+;           }else{
+                console.log('Contraseña incorrecta');
+            }
+
+            // Simulación de inicio de sesión exitoso
+            // Guardar el correo en sessionStorage
+            
         });
     } else {
         console.error('Elemento loginForm no encontrado en la página.');
