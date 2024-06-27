@@ -1,3 +1,26 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const logoutButton = document.getElementById('logOut');
+    const loginButton = document.getElementById('loggIn');
+
+    if (sessionStorage.getItem('loggedIn')) {
+        loginButton.style.display = 'none';
+        logoutButton.style.display = 'block';
+    }
+
+     if(loginButton){
+        loginButton.addEventListener('click', () => {
+            window.location.href = 'login/login.html';
+        });
+    }
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            sessionStorage.removeItem('loggedIn');
+            sessionStorage.removeItem('userEmail');
+            loginButton.style.display = 'block';
+            logoutButton.style.display = 'none';
+        });
+    }
+});
 document.addEventListener('DOMContentLoaded', function(){
     //EventListener al formulario de Registro 
     const registerForm = document.getElementById('registerForm');
