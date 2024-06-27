@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', function(){
         registerForm.addEventListener('submit', function(event){
             event.preventDefault();
             const email = document.getElementById('email').value;
+            const firstName = document.getElementById('firstName').value;
             const pass = document.getElementById('password').value;
             const user = {
+                firstName: firstName,
                 email:email,
                 password: pass,
             };
@@ -30,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const email = document.getElementById('email').value;
             const pass = document.getElementById('password').value;
+           
 
             // Validación básica de correo electrónico
             if (!isValidEmail(email)) {
@@ -39,17 +42,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
             //Se añade para traer los datos del localStorage
             const user = localStorage.getItem(email);
+           
             const data = JSON.parse(user);
             console.log(data);
 
             if (user == null) {
                 console.log('Email incorrecto');
             } else if (email == data.email && pass == data.password) {
-                console.log('Inicio OK')
+                console.log(data.firstName);
+                alert('Inicio OK')
                 sessionStorage.setItem('userEmail', email);
+                sessionStorage.setItem('loggedIn', true);
+                
 
-            // Redireccionar a otra página (p. ej., la página principal)
-            window.location.href = '../index.html';
+                // Redireccionar a otra página (p. ej., la página principal)
+                window.location.href = '../index.html';
             }else{
                 console.log('Contraseña incorrecta');
             }
@@ -60,20 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     } else {
         console.error('Elemento loginForm no encontrado en la página.');
-    }
-
-    // Agregar event listener al botón de cerrar sesión si existe
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-
-            // Limpiar sessionStorage y redireccionar al login
-            sessionStorage.removeItem('userEmail');
-            window.location.href = '../login/login.html';
-        });
-    } else {
-        console.error('Elemento logoutBtn no encontrado en la página.');
     }
 
     // Función para validar el correo electrónico
