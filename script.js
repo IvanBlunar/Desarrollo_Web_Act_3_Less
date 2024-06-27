@@ -1,10 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
     const logoutButton = document.getElementById('logOut');
     const loginButton = document.getElementById('loggIn');
+    const msg = document.getElementById('mensaje');
 
     if (sessionStorage.getItem('loggedIn')) {
         loginButton.style.display = 'none';
         logoutButton.style.display = 'block';
+       
+
+        const userEmail = sessionStorage.getItem('userEmail');
+        const userData = JSON.parse(localStorage.getItem(userEmail));
+        if (userData) {
+            msg.innerHTML = 'Bienvenida '+userData.firstName;
+            msg.style.display = 'block';
+        } else {
+            console.log('No se encontraron datos de usuario en localStorage.');
+        }
     }
 
      if(loginButton){
@@ -18,9 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
             sessionStorage.removeItem('userEmail');
             loginButton.style.display = 'block';
             logoutButton.style.display = 'none';
+            msg.style.display='none';
         });
     }
 });
+
+
 document.addEventListener('DOMContentLoaded', function(){
     //EventListener al formulario de Registro 
     const registerForm = document.getElementById('registerForm');
