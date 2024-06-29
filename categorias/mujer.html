@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LESS</title>
-    <link rel="stylesheet" href="mujer.css">
+    <link rel="stylesheet" href="hombre.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -13,8 +13,15 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="../index.html">LESS!</a>
-        <div class="nav-icons d-flex d-lg-none">
-            <a href="#" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+        <div class="nav-icons d-flex d-lg-none header-cart">
+            <a href="#" class="nav-link ">
+              <!-- Icono del carrito de compras -->
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-counter-mobile" class="badge bg-danger">0</span>
+            </a>
+            <div class="cart-content-wraper" id="cart-content-wraper-mobile">
+                <!-- Inicio de la Cart Dinamica para el carrito de compras -->
+            </div>
             <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#userModal"><i class="fas fa-user"></i></a>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,117 +37,96 @@
                 <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
                 <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
             </form>
-            <div class="nav-icons d-none d-lg-flex">
-                <a href="#" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
-                <a href="../login/login.html" class="nav-link" id="loggIn"><i class="fas fa-user"></i> Iniciar Sesion</a>
-                <a href="../login/login.html" class="nav-link" style="display: none;" id="logOut"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion</a>
+            <div class="nav-icons d-none d-lg-flex header-cart">
+                <a href="#" class="nav-link header-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-counter" class="badge bg-danger">0</span>
+                </a>
+                <div class="cart-content-wraper" id="cart-content-wraper">
+                    <!-- Card Dinamica para el carrito de compras -->
+                </div>
+                
             </div>
         </div>
+        
+        <a href="../login/login.html" class="nav-link" id="loggIn"><i class="fas fa-user"></i> Iniciar Sesion</a>
+       <a href="../login/login.html" class="nav-link" style="display: none;" id="logOut"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion</a>
     </div>
 </nav>
 
 <!-- Modal -->
 <!-- <div class="modal fade modal-right" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="userModalLabel">Cuenta de Usuario</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">-->
-            <!-- Enlace para cerrar sesión -->
-            <!--<a href="#" class="btn btn-custom-login btn-block mb-2 logout-btn">Iniciar Sesion</a>
-            <a href="#" class="btn btn-custom-login btn-block mb-2 logout-btn">Cerrar Sesión</a>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Cuenta de Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"> -->
+                <!-- Enlace para cerrar sesión -->
+                <!-- <a href="#" class="btn btn-custom-login btn-block mb-2 logout-btn">Iniciar Sesion</a>
+                <a href="#" class="btn btn-custom-login btn-block mb-2 logout-btn">Cerrar Sesión</a>
+            </div>
         </div>
     </div>
-</div>
 </div> -->
-     
-    <div class="banner">
-        <h1>MUJER</h1>
-    </div>
+      
+<div class="banner">
+    <h1>MUJER</h1>
+</div>
 
-    <h1 class="title">T-Shirts destacadas</h1>
-    <div class="flex-container">
-      <div class="cards">
-        <img src="../assets/img/Camisetasm1.jpg" class="card-img-top" alt="Camiseta">
-        <div class="cards-body">
-          <h5 class="cards-title">Blusa Amarilla</h5>
-          <p class="cards-text">$20</p>
-          <a href="producto.html" class="button button-primary">Comprar</a>
-        </div>
-      </div>
-      <div class="cards">
-        <img src="../assets/img/Camisetasm2.jpg" class="card-img-top" alt="Camiseta">
-        <div class="cards-body">
-          <h5 class="cards-title">Blusa Rosada</h5>
-          <p class="cards-text">$25</p>
-          <a href="#" class="button button-primary">Comprar</a>
-        </div>
-      </div>
-      <div class="cards">
-        <img src="../assets/img/Blusa1.jpg" class="card-img-top" alt="Camiseta">
-        <div class="cards-body">
-          <h5 class="cards-title">Blusa Rosada</h5>
-          <p class="cards-text">$25</p>
-          <a href="#" class="button button-primary">Comprar</a>
-        </div>
-      </div>
+<h1 class="title">T-Shirts destacadas</h1>
+<div class="flex-container">
+  <div class="cards">
+    <img src="../assets/img/Camisetasm1.jpg" class="card-img-top" alt="Camiseta">
+    <div class="cards-body">
+      <h5 class="cards-title">Blusa Amarilla</h5>
+      <p class="cards-text">$20</p>
+      <a href="#" class="button button-primary comprar-btn">Comprar</a>
     </div>
   </div>
-
-  <div class="flex-container">
-    <div class="cards">
-      <img src="../assets/img/camisetam4.jpg" class="card-img-top" alt="Camiseta">
-      <div class="cards-body">
-        <h5 class="cards-title">Top Verde</h5>
-        <p class="cards-text">$20</p>
-        <a href="producto.html" class="button button-primary">Comprar</a>
-      </div>
+  <div class="cards">
+    <img src="../assets/img/Camisetasm2.jpg" class="card-img-top" alt="Camiseta">
+    <div class="cards-body">
+      <h5 class="cards-title">Blusa Rosada</h5>
+      <p class="cards-text">$25</p>
+      <a href="#" class="button button-primary comprar-btn">Comprar</a>
     </div>
-    <div class="cards">
-      <img src="../assets/img/chaquetam2.jpg" class="card-img-top" alt="Camiseta">
-      <div class="cards-body">
-        <h5 class="cards-title">Abrigo Beige</h5>
-        <p class="cards-text">$25</p>
-        <a href="#" class="button button-primary">Comprar</a>
-      </div>
-    </div>
-    <div class="cards">
-      <img src="../assets/img/Blusa4.jpg" class="card-img-top" alt="Camiseta">
-      <div class="cards-body">
-        <h5 class="cards-title">Blusa Flores</h5>
-        <p class="cards-text">$25</p>
-        <a href="#" class="button button-primary">Comprar</a>
-      </div>
+  </div>
+  <div class="cards">
+    <img src="../assets/img/Blusa1.jpg" class="card-img-top" alt="Camiseta">
+    <div class="cards-body">
+      <h5 class="cards-title">Blusa Rosada</h5>
+      <p class="cards-text">$25</p>
+      <a href="#" class="button button-primary comprar-btn">Comprar</a>
     </div>
   </div>
 </div>
 
 <div class="flex-container">
-    <div class="cards">
-      <img src="../assets/img/sacom1.jpg" class="card-img-top" alt="Camiseta">
-      <div class="cards-body">
-        <h5 class="cards-title">Saco Rosado</h5>
-        <p class="cards-text">$20</p>
-        <a href="producto.html" class="button button-primary">Comprar</a>
-      </div>
+
+  <div class="cards">
+    <img src="../assets/img/sacom1.jpg" class="card-img-top" alt="Camiseta">
+    <div class="cards-body">
+      <h5 class="cards-title">Saco Rosado</h5>
+      <p class="cards-text">$20</p>
+      <a href="#" class="button button-primary comprar-btn">Comprar</a>
     </div>
-    <div class="cards">
-      <img src="../assets/img/Bulsa2.jpg" class="card-img-top" alt="Camiseta">
-      <div class="cards-body">
-        <h5 class="cards-title">Top Cafe</h5>
-        <p class="cards-text">$25</p>
-        <a href="#" class="button button-primary">Comprar</a>
-      </div>
+  </div>
+  <div class="cards">
+    <img src="../assets/img/Bulsa2.jpg" class="card-img-top" alt="Camiseta">
+    <div class="cards-body">
+      <h5 class="cards-title">Top Cafe</h5>
+      <p class="cards-text">$25</p>
+      <a href="#" class="button button-primary comprar-btn">Comprar</a>
     </div>
-    <div class="cards">
-      <img src="../assets/img/blusa3.jpg" class="card-img-top" alt="Camiseta">
-      <div class="cards-body">
-        <h5 class="cards-title">Blusa Rosada</h5>
-        <p class="cards-text">$25</p>
-        <a href="#" class="button button-primary">Comprar</a>
-      </div>
+  </div>
+  <div class="cards">
+    <img src="../assets/img/blusa3.jpg" class="card-img-top" alt="Camiseta">
+    <div class="cards-body">
+      <h5 class="cards-title">Blusa Rosada</h5>
+      <p class="cards-text">$25</p>
+      <a href="#" class="button button-primary comprar-btn">Comprar</a>
     </div>
   </div>
 </div>
@@ -177,13 +163,13 @@
             </div>
         </div>
         <hr>
-        <p class="text-muted">© 2024 © 2024 LESS</p>
+        <p class="text-muted">© 2024 LESS </p>
     </div>
 </footer>
-  
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script src="../script.js"></script>
+    <script src="carrito.js"></script>
 </body>
 </html>
