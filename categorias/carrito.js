@@ -1,9 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let cartCounter = localStorage.getItem('cartCounter') || 0;
+    // Obtener el correo electrónico del usuario desde sessionStorage
+    const userEmail = sessionStorage.getItem('userEmail');
+
+    let cartCounter = localStorage.getItem(`${userEmail}_cartCounter`) || 0;
     cartCounter = parseInt(cartCounter);
     updateCartCounter(cartCounter);
 
-    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    let cartItems = JSON.parse(localStorage.getItem(`${userEmail}_cartItems`)) || [];
     updateCartContent(cartItems);
 
     const comprarButtons = document.querySelectorAll('.comprar-btn');
@@ -28,9 +31,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 cartItems.push(item);
             }
 
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            // Guardar los datos actualizados en localStorage
+            localStorage.setItem(`${userEmail}_cartItems`, JSON.stringify(cartItems));
             cartCounter = cartItems.reduce((total, item) => total + item.qty, 0);
-            localStorage.setItem('cartCounter', cartCounter);
+            localStorage.setItem(`${userEmail}_cartCounter`, cartCounter);
             updateCartCounter(cartCounter);
             updateCartContent(cartItems);
         });
@@ -47,22 +51,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const cartContentWrapers = document.querySelectorAll('#cart-content-wraper, #cart-content-wraper-mobile');
         cartContentWrapers.forEach(wrapper => {
             wrapper.innerHTML = '';
-            if (items.length === 0) {
-                cartContentWrapper.innerHTML = '<p>Tu carrito está vacío.</p>';
-                return;
-            }
             let subtotal = 0;
             items.forEach(item => {
                 subtotal += parseFloat(item.price.replace('$', '')) * item.qty;
                 wrapper.innerHTML += `
                     <div class="cart-single-wraper">
-                       <div class="row">
-                            <div class="col-4">
-                                <img src="${item.imgSrc}" class="img-thumbnail" alt="${item.name}" style="width: 50px;">
-                            </div>
-                            <div class="col-8">
-                                <p>${item.name}</p>
-                                <p>${item.price} x ${item.qty}</p>
+                        <div class="cart-img">
+                            <a href="#"><img src="${item.imgSrc}" alt=""></a>
+                        </div>
+                        <div class="cart-content">
+                            <div class="cart-name"> <a href="#">${item.name}</a> </div>
+                            <div class="cart-price"> ${item.price} </div>
+                            <div class="cart-qty">
+                                Cantidad: <input type="number" min="1" value="${item.qty}" onchange="updateCartItemQuantity(${items.indexOf(item)}, this.value)">
                             </div>
                         </div>
                         <div class="remove"> <a href="#"><i class="zmdi zmdi-close"></i></a> </div>
@@ -72,10 +73,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="cart-subtotal"> Subtotal: <span>$${subtotal.toFixed(2)}</span> </div>
                 <div class="cart-check-btn">
                     <div class="view-cart"> <a class="btn btn-primary" href="cart.html">Ir al Carrito</a> </div>
-                    <div class="check-btn"> <a class="btn-def" href="checkout.html">Checkout</a> </div>
+                    <div class="check-btn"> <a class="btn btn-success" href="checkout.html">Checkout</a> </div>
                 </div>`;
         });
     }
+
+    // Función para actualizar la cantidad de un artículo en el carrito
+    window.updateCartItemQuantity = function(index, quantity) {
+        cartItems[index].qty = parseInt(quantity);
+        localStorage.setItem(`${userEmail}_cartItems`, JSON.stringify(cartItems));
+
+        // Actualizar contador y contenido del carrito
+        cartCounter = cartItems.reduce((total, item) => total + item.qty, 0);
+        localStorage.setItem(`${userEmail}_cartCounter`, cartCounter);
+        updateCartCounter(cartCounter);
+        updateCartContent(cartItems);
+    };
+
+
 
     document.querySelectorAll('.header-cart').forEach(cart => {
         cart.addEventListener('mouseenter', function() {

@@ -34,8 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (msg) {
                 msg.style.display = 'none';
             }
-            window.location.href = '../login/login.html';
-           
+            
+            if (window.location.pathname.includes('index.html')) {
+                window.location.href = 'login/login.html';
+            }else {
+                window.location.href = '../login/login.html';
+            }
         });
     }
 });

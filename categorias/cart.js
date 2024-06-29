@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const userEmail = sessionStorage.getItem('userEmail');
+    let cartItems = JSON.parse(localStorage.getItem(`${userEmail}_cartItems`)) || [];
     displayCartItems(cartItems);
     displayCartTotal(cartItems);
 
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const newQty = parseInt(input.value);
                 const item = cartItems.find(item => item.name === itemName);
                 item.qty = newQty;
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                localStorage.setItem(`${userEmail}_cartItems`, JSON.stringify(cartItems));
                 updateCartTotalAndDisplay(cartItems);
             });
         });
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             button.addEventListener('click', function() {
                 const itemName = button.getAttribute('data-name');
                 cartItems = cartItems.filter(item => item.name !== itemName);
-                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                localStorage.setItem(`${userEmail}_cartItems`, JSON.stringify(cartItems));
                 displayCartItems(cartItems);
                 displayCartTotal(cartItems);
                 updateCartCounter(cartItems);
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateCartCounter(items) {
         const cartCounterElements = document.querySelectorAll('#cart-counter, #cart-counter-mobile');
         const cartCounter = items.reduce((total, item) => total + item.qty, 0);
-        localStorage.setItem('cartCounter', cartCounter);
+        localStorage.setItem(`${userEmail}_cartCounter`, cartCounter);
         cartCounterElements.forEach(counter => {
             counter.textContent = cartCounter;
         });
