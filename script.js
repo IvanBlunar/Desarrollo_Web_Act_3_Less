@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const userEmail = sessionStorage.getItem('userEmail');
         const userData = JSON.parse(localStorage.getItem(userEmail));
         if (userData) {
-            msg.innerHTML = 'Bienvenida '+userData.firstName;
+            msg.innerHTML = 'Bienvenid@ '+userData.firstName;
             msg.style.display = 'block';
         } else {
             console.log('No se encontraron datos de usuario en localStorage.');
