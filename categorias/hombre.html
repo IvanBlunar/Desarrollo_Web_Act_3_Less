@@ -9,19 +9,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="../index.html">LESS!</a>
         <div class="nav-icons d-flex d-lg-none header-cart">
             <a href="#" class="nav-link ">
-              <!-- Icono del carrito de compras -->
                 <i class="fas fa-shopping-cart"></i>
                 <span id="cart-counter-mobile" class="badge bg-danger">0</span>
             </a>
-            <div class="cart-content-wraper" id="cart-content-wraper-mobile">
-                <!-- Inicio de la Cart Dinamica para el carrito de compras -->
-            </div>
+            <div class="cart-content-wraper" id="cart-content-wraper-mobile"></div>
             <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#userModal"><i class="fas fa-user"></i></a>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,38 +38,16 @@
                     <i class="fas fa-shopping-cart"></i>
                     <span id="cart-counter" class="badge bg-danger">0</span>
                 </a>
-                <div class="cart-content-wraper" id="cart-content-wraper">
-                    <!-- Card Dinamica para el carrito de compras -->
-                </div>
-                
+                <div class="cart-content-wraper" id="cart-content-wraper"></div>
             </div>
         </div>
-        
         <a href="../login/login.html" class="nav-link" id="loggIn"><i class="fas fa-user"></i> Iniciar Sesion</a>
-       <a href="../login/login.html" class="nav-link" style="display: none;" id="logOut"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion</a>
+        <a href="#" class="nav-link" style="display: none;" id="logOut"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion</a>
     </div>
-</nav>
-
-<!-- Modal -->
-<!-- <div class="modal fade modal-right" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="userModalLabel">Cuenta de Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body"> -->
-                <!-- Enlace para cerrar sesión -->
-                <!-- <a href="#" class="btn btn-custom-login btn-block mb-2 logout-btn">Iniciar Sesion</a>
-                <a href="#" class="btn btn-custom-login btn-block mb-2 logout-btn">Cerrar Sesión</a>
-            </div>
-        </div>
-    </div>
-</div> -->
-      
-<div class="banner">
+  </nav>
+  <div class="banner">
     <h1>HOMBRE</h1>
-</div>
+  </div>
 
 <h1 class="title">T-Shirts destacadas</h1>
 <div class="flex-container">

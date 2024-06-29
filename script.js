@@ -6,30 +6,36 @@ document.addEventListener('DOMContentLoaded', function() {
     if (sessionStorage.getItem('loggedIn')) {
         loginButton.style.display = 'none';
         logoutButton.style.display = 'block';
-       
 
         const userEmail = sessionStorage.getItem('userEmail');
         const userData = JSON.parse(localStorage.getItem(userEmail));
         if (userData) {
-            msg.innerHTML = 'Bienvenid@ '+userData.firstName;
-            msg.style.display = 'block';
+            if (msg) {
+                msg.innerHTML = 'Bienvenid@ ' + userData.firstName;
+                msg.style.display = 'block';
+            }
         } else {
             console.log('No se encontraron datos de usuario en localStorage.');
         }
     }
 
-     if(loginButton){
+    if(loginButton) {
         loginButton.addEventListener('click', () => {
-            window.location.href = 'login/login.html';
+            window.location.href = '../login/login.html';
         });
     }
+    
     if (logoutButton) {
         logoutButton.addEventListener('click', () => {
             sessionStorage.removeItem('loggedIn');
             sessionStorage.removeItem('userEmail');
             loginButton.style.display = 'block';
             logoutButton.style.display = 'none';
-            msg.style.display='none';
+            if (msg) {
+                msg.style.display = 'none';
+            }
+            window.location.href = '../login/login.html';
+           
         });
     }
 });
