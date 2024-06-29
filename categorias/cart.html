@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">LESS!</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between align-items-center" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                    <a class="nav-link" href="../categorias/hombre.html">Hombre</a>
+                    <a class="nav-link" href="../categorias/mujer.html">Mujer</a>
+                </div>
+                <form class="d-flex my-2 my-lg-0 ms-auto">
+                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <div class="nav-icons d-none d-lg-flex header-cart">
+                    <a href="#" class="nav-link header-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-counter" class="badge bg-danger">0</span>
+                    </a>
+                    <div class="cart-content-wraper" id="cart-content-wraper"></div>
+                </div>
+            </div>
+            <a href="../login/login.html" class="nav-link" id="loggIn"><i class="fas fa-user"></i> Iniciar Sesion</a>
+            <a href="#" class="nav-link" style="display: none;" id="logOut"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesion</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <h1>Carrito de Compras</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items"></tbody>
+            </table>
+        </div>
+        <div id="cart-total" class="mt-4"></div>
+        <div class="mt-4">
+            <a href="checkout.html" class="btn btn-primary">Proceder al pago</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center text-white">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Redes Sociales</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-map-marker-alt"></i> Dirección: Av. Principal #123, Ciudad, País</li>
+                        <li><i class="fas fa-phone"></i> Teléfono: +123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> Correo Electrónico: info@example.com</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Newsletter</h5>
+                    <p>Suscríbete a nuestro boletín para recibir noticias y promociones.</p>
+                    <form action="#" method="post">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Suscribirse</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <p class="text-muted">© 2024 LESS</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>
+

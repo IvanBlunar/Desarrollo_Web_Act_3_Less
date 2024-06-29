@@ -47,18 +47,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const cartContentWrapers = document.querySelectorAll('#cart-content-wraper, #cart-content-wraper-mobile');
         cartContentWrapers.forEach(wrapper => {
             wrapper.innerHTML = '';
+            if (items.length === 0) {
+                cartContentWrapper.innerHTML = '<p>Tu carrito está vacío.</p>';
+                return;
+            }
             let subtotal = 0;
             items.forEach(item => {
                 subtotal += parseFloat(item.price.replace('$', '')) * item.qty;
                 wrapper.innerHTML += `
                     <div class="cart-single-wraper">
-                        <div class="cart-img">
-                            <a href="#"><img src="${item.imgSrc}" alt=""></a>
-                        </div>
-                        <div class="cart-content">
-                            <div class="cart-name"> <a href="#">${item.name}</a> </div>
-                            <div class="cart-price"> ${item.price} </div>
-                            <div class="cart-qty"> Qty: <span>${item.qty}</span> </div>
+                       <div class="row">
+                            <div class="col-4">
+                                <img src="${item.imgSrc}" class="img-thumbnail" alt="${item.name}" style="width: 50px;">
+                            </div>
+                            <div class="col-8">
+                                <p>${item.name}</p>
+                                <p>${item.price} x ${item.qty}</p>
+                            </div>
                         </div>
                         <div class="remove"> <a href="#"><i class="zmdi zmdi-close"></i></a> </div>
                     </div>`;
@@ -66,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
             wrapper.innerHTML += `
                 <div class="cart-subtotal"> Subtotal: <span>$${subtotal.toFixed(2)}</span> </div>
                 <div class="cart-check-btn">
-                    <div class="view-cart"> <a class="btn-def" href="cart.html">View Cart</a> </div>
+                    <div class="view-cart"> <a class="btn btn-primary" href="cart.html">Ir al Carrito</a> </div>
                     <div class="check-btn"> <a class="btn-def" href="checkout.html">Checkout</a> </div>
                 </div>`;
         });
