@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const userDetailsDiv = document.getElementById('user-details');
     if (userData) {
         userDetailsDiv.innerHTML = `
-            <p><strong>Nombre:</strong> ${userData.firstName} ${userData.lastName}</p>
+            <p><strong>Nombre:</strong> ${userData.firstName} </p>
             <p><strong>Correo Electrónico:</strong> ${userData.email}</p>
-            <!-- Añadir más detalles según lo almacenado -->
+            
         `;
     } else {
         userDetailsDiv.innerHTML = `<p>No se encontraron detalles del usuario.</p>`;
@@ -17,19 +17,80 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mostrar resumen del carrito
     let cartItems = JSON.parse(localStorage.getItem(`${userEmail}_cartItems`)) || [];
     const cartSummaryDiv = document.getElementById('cart-summary');
+    const subtotal = cartItems.reduce((total, item) => total + parseFloat(item.price.replace('$', '')) * item.qty, 0);
     cartSummaryDiv.innerHTML = `
-        <ul>
-            ${cartItems.map(item => `<li>${item.name} - ${item.price} - Cantidad: ${item.qty}</li>`).join('')}
-        </ul>
+
+    <ul class="list-group">
+
+        <li class="list-group-item" style="font-weight:bold">
+            <div class="row">
+                <div class="col" style="bold">Articulo</div>
+                <div class="col">Cantidad</div>
+                <div class="col">Precio</div>
+                <div class="col">Total</div>
+                
+            </div>
+        </li>
+        ${cartItems.map(item => `
+            
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col">${item.name}</div>
+                    <div class="col">${item.qty}</div>
+                    <div class="col">${item.price}</div>
+                    <div class="col">$${(parseFloat(item.price.replace('$', '')) * item.qty).toFixed(2)}</div>
+                    
+                </div>
+            </li>`
+        ).join('')}
+        <li class="list-group-item active">
+            <div class="row">
+                <div class="col"  >TOTAL:</div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col">$${subtotal.toFixed(2)}</div>
+            </div>
+        </li>
+    </ul>
+
     `;
 
-    // Event listener para el formulario de pago
-    const paymentForm = document.getElementById('payment-form');
-    paymentForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Aquí puedes añadir la lógica para procesar el pago
-        alert('¡Pago procesado con éxito!');
-        // Redirigir a una página de confirmación o de gracias
-        window.location.href = 'confirmation.html';
+    // const paymentForm = document.getElementById('payment-form');
+    // paymentForm.addEventListener('submit', function(event) {
+    //     event.preventDefault();
+    //     alert('¡Pago procesado con éxito!');
+    //     window.location.href = 'confirmation.html';
+    // });
+});
+// API GITHUB NOMBRE DE PAISES
+const apiUrl = 'https://restcountries.com/v3.1/all';
+
+
+async function fetchCountries() {
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error('Error al obtener los países.');
+        }
+        const data = await response.json();
+        populateCountries(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+
+function populateCountries(countries) {
+    const selectCountry = document.getElementById('country');
+    countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country.name.common;
+        option.textContent = country.name.common;
+        selectCountry.appendChild(option);
     });
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchCountries();
 });
