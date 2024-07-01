@@ -1,40 +1,46 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const url = 'https://linkedin-data-api.p.rapidapi.com/?username=axmunoz';
-    const options = {
-        method: 'GET',
-        headers: {
-            'x-rapidapi-key': '42aa1d7d3fmsh0815cbc3ca3d3cap1c1ad6jsn47e14ea225d6',
-            'x-rapidapi-host': 'linkedin-data-api.p.rapidapi.com'
-        }
-    };
+    const users = ['yojanstyvenh', 'ivan-humberto-bello-sandoval-15ba481a9'];
+    const teamInfoDiv = document.getElementById('team-info');
 
-    try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        
-        const teamInfoDiv = document.getElementById('team-info');
-        if (result) {
-            teamInfoDiv.innerHTML = `
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="${result.profilePicture}" class="img-fluid rounded-start" alt="${result.firstName} ${result.lastName}">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">${result.firstName} ${result.lastName}</h5>
-                                <p class="card-text"><strong>País:</strong> ${result.geo.country}</p>
-                                <p class="card-text"><strong>Ciudad:</strong> ${result.geo.city}</p>
+    for (const username of users) {
+        const url = `https://linkedin-data-api.p.rapidapi.com/?username=${username}`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': '6530df6b88msh047f05615eeda21p12b18ajsn5a4c777929a0',
+                'x-rapidapi-host': 'linkedin-data-api.p.rapidapi.com'
+            }
+        };
+
+        try {
+            const response = await fetch(url, options);
+            const result = await response.json();
+
+            if (result) {
+                const card = `
+                    <div class="col-md-6 mb-3">
+                        <div class="card" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="${result.profilePicture}" class="img-fluid rounded-start" alt="${result.firstName} ${result.lastName}">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${result.firstName} ${result.lastName}</h5>
+                                        <p class="card-text">Ubicación: ${result.geo.city}, ${result.geo.country}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div><br>
-            `;
-        } else {
-            teamInfoDiv.innerHTML = `<p>No se encontró información del equipo.</p>`;
+                `;
+                teamInfoDiv.innerHTML += card;
+            } else {
+                teamInfoDiv.innerHTML += `<p class="col-md-6 mb-3">No se encontró información para ${username}.</p>`;
+            }
+        } catch (error) {
+            console.error(error);
+            teamInfoDiv.innerHTML += `<p class="col-md-6 mb-3">Error al cargar la información de ${username}.</p>`;
         }
-    } catch (error) {
-        console.error(error);
-        document.getElementById('team-info').innerHTML = `<p>Error al cargar la información del equipo.</p>`;
     }
 });
