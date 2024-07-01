@@ -70,4 +70,14 @@ document.addEventListener('DOMContentLoaded', function() {
             counter.textContent = cartCounter;
         });
     }
+
+    // Verificación de inicio de sesión al hacer clic en "Proceder al pago"
+    const checkoutButton = document.querySelector('.btn.btn-primary');
+    checkoutButton.addEventListener('click', function(event) {
+        if (!sessionStorage.getItem('loggedIn')) {
+            event.preventDefault();
+            alert('Por favor, inicia sesión para proceder al pago.');
+            window.location.href = '../login/login.html';
+        }
+    });
 });

@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="cart-subtotal"> Subtotal: <span>$${subtotal.toFixed(2)}</span> </div>
                 <div class="cart-check-btn">
                     <div class="view-cart"> <a class="btn btn-primary" href="${cartPage}">Ir al Carrito</a> </div>
-                    <div class="check-btn"> <a class="btn btn-success" href="checkout.html">Checkout</a> </div>
+                    <!--<div class="check-btn"> <a class="btn btn-success" href="checkout.html">Checkout</a> </div>-->
                 </div>`;
         });
     }

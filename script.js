@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         logoutButton.addEventListener('click', () => {
             sessionStorage.removeItem('loggedIn');
             sessionStorage.removeItem('userEmail');
+            sessionStorage.removeItem('editShipping');
             loginButton.style.display = 'block';
             logoutButton.style.display = 'none';
             if (msg) {
@@ -91,21 +92,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const user = localStorage.getItem(email);
            
             const data = JSON.parse(user);
-            console.log(data);
 
             if (user == null) {
                 console.log('Email incorrecto');
+                alert("Ese correo no existe, intente con otro");
             } else if (email == data.email && pass == data.password) {
                 console.log(data.firstName);
                 alert('Inicio OK')
                 sessionStorage.setItem('userEmail', email);
                 sessionStorage.setItem('loggedIn', true);
-                
-
                 // Redireccionar a otra página (p. ej., la página principal)
                 window.location.href = '../index.html';
             }else{
+                alert("Contraseña Incorrecta");
                 console.log('Contraseña incorrecta');
+                
             }
 
             // Simulación de inicio de sesión exitoso
