@@ -122,6 +122,11 @@ body {
 }
 
 
+.mt-5 {
+    margin-top: 7rem!important;
+    margin-bottom: 9rem !important;
+}
+
 
 /* Media Queries para pantallas más pequeñas */
 @media (max-width: 768px) {
