@@ -30,8 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
                 cartItems.push(item);
             }
-
-            // Guardar los datos actualizados en localStorage
             localStorage.setItem(`${userEmail}_cartItems`, JSON.stringify(cartItems));
             cartCounter = cartItems.reduce((total, item) => total + item.qty, 0);
             localStorage.setItem(`${userEmail}_cartCounter`, cartCounter);
@@ -78,12 +76,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Función para actualizar la cantidad de un artículo en el carrito
     window.updateCartItemQuantity = function(index, quantity) {
         cartItems[index].qty = parseInt(quantity);
         localStorage.setItem(`${userEmail}_cartItems`, JSON.stringify(cartItems));
 
-        // Actualizar contador y contenido del carrito
         cartCounter = cartItems.reduce((total, item) => total + item.qty, 0);
         localStorage.setItem(`${userEmail}_cartCounter`, cartCounter);
         updateCartCounter(cartCounter);

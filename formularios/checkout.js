@@ -55,12 +55,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     `;
 
-    // const paymentForm = document.getElementById('payment-form');
-    // paymentForm.addEventListener('submit', function(event) {
-    //     event.preventDefault();
-    //     alert('¡Pago procesado con éxito!');
-    //     window.location.href = 'confirmation.html';
-    // });
+    const shippingForm = document.getElementById('shipping-details-form');
+    shippingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const shippingDetails = {
+            fullName: document.getElementById('full-name').value,
+            address: document.getElementById('address').value,
+            city: document.getElementById('city').value,
+            postalCode: document.getElementById('postal-code').value,
+            country: document.getElementById('country').value,
+            phone: document.getElementById('phone').value
+        };
+        localStorage.setItem(`${userEmail}_shippingDetails`, JSON.stringify(shippingDetails));
+        window.location.href = 'delivery.html';
+    });
 });
 // API GITHUB NOMBRE DE PAISES
 const apiUrl = 'https://restcountries.com/v3.1/all';
