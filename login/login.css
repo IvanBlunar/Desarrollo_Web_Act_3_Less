@@ -151,7 +151,11 @@ label {
     color: #ffffff !important ;
     border-color: #4d4f4e !important ;
 }
-  
+
+
+
+
+
 /* Media Queries para pantallas más pequeñas */
 @media (max-width: 768px) {
 

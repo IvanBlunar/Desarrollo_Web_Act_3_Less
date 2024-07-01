@@ -1,0 +1,12 @@
+.nav-link:focus, .nav-link:hover {
+    color: #ffffff !important;
+}
+
+.nav-link {
+    display: block;
+    padding: .5rem 1rem;
+    color: #b0b3b6 !important;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
