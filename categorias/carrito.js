@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 };
                 cartItems.push(item);
             }
+
+            // Guardar los datos actualizados en localStorage
             localStorage.setItem(`${userEmail}_cartItems`, JSON.stringify(cartItems));
             cartCounter = cartItems.reduce((total, item) => total + item.qty, 0);
             localStorage.setItem(`${userEmail}_cartCounter`, cartCounter);
@@ -67,19 +69,24 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="remove"> <a href="#"><i class="zmdi zmdi-close"></i></a> </div>
                     </div>`;
             });
+            const currentPath = window.location.pathname;
+            const cartPage = currentPath.includes('index.html') ? 'categorias/cart.html' : 'cart.html';
+
             wrapper.innerHTML += `
                 <div class="cart-subtotal"> Subtotal: <span>$${subtotal.toFixed(2)}</span> </div>
                 <div class="cart-check-btn">
-                    <div class="view-cart"> <a class="btn btn-primary" href="cart.html">Ir al Carrito</a> </div>
+                    <div class="view-cart"> <a class="btn btn-primary" href="${cartPage}">Ir al Carrito</a> </div>
                     <div class="check-btn"> <a class="btn btn-success" href="checkout.html">Checkout</a> </div>
                 </div>`;
         });
     }
 
+    // Función para actualizar la cantidad de un artículo en el carrito
     window.updateCartItemQuantity = function(index, quantity) {
         cartItems[index].qty = parseInt(quantity);
         localStorage.setItem(`${userEmail}_cartItems`, JSON.stringify(cartItems));
 
+        // Actualizar contador y contenido del carrito
         cartCounter = cartItems.reduce((total, item) => total + item.qty, 0);
         localStorage.setItem(`${userEmail}_cartCounter`, cartCounter);
         updateCartCounter(cartCounter);
