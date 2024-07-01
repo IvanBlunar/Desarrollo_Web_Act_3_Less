@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             headers: {
                 //la api-key tiene limitacion de solicitudes una vez exceda las solicitudes esta api Key 
                 //una vez exceda las solicitudes esta api Key ya no sirve
-                //'x-rapidapi-key': '238a5f28d1mshf8e51e11ed94fd8p1be248jsnac7f40a30478',
+                'x-rapidapi-key': '238a5f28d1mshf8e51e11ed94fd8p1be248jsnac7f40a30478',
                 'x-rapidapi-host': 'linkedin-data-api.p.rapidapi.com'
             }
         };
